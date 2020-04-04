@@ -1,7 +1,10 @@
 Goal: Help you understand the internal operations of CPU caches.
 Group: Brent, Kai, Kareem
 
-Due Dates: Milestone #1 - Input parameters and parsing the trace file. DUE: Thu Apr 6th, 11:59pm Milestone #2 - The Cache Simulator Program. DUE: Mon Apr 27th, 11:59pm Milestone #3 - Analysis. DUE: May 7th, 2020, 7:30pm
+Due Dates: 
+Milestone #1 - Input parameters and parsing the trace file. DUE: Thu Apr 6th, 11:59pm
+Milestone #2 - The Cache Simulator Program. DUE: Mon Apr 27th, 11:59pm 
+Milestone #3 - Analysis. DUE: May 7th, 2020, 7:30pm
 
 Programming Language: Python
 
@@ -22,4 +25,13 @@ Sample command lines: Sim.exe -f trace1.txt -s 1024 -b 16 -a 2 -r RR
 
 That would read the trace file named "trace1.txt", configure a total cache size of 1 MB with a block size of 16 bytes/block. It would be a 2-way set associative and use the replacement policy of Round Robin. We will assume a write-through policy. COST: $0.05/KB
 
-Your simulator should output the simulation results to the screen (stdout). The output should have a short header formatted as follows: Cache Simulator CS 3853 Spring 2020 - Group #01 Cmd Line: Sim.exe -f trace1.txt -s 1024 -b 16 -a 2 -r RR Trace File: Sim.exe Cache Size: 1024 KB Block Size: 16 bytes Associativity: 2-way R-Policy: RR
+Your simulator should output the simulation results to the screen (stdout). 
+The output should have a short header formatted as follows: 
+
+Cache Simulator CS 3853 Spring 2020 - Group #01 
+Cmd Line: Sim.exe -f trace1.txt -s 1024 -b 16 -a 2 -r RR 
+Trace File: Sim.exe 
+Cache Size: 1024 KB 
+Block Size: 16 bytes 
+Associativity: 2-way 
+R-Policy: RR
