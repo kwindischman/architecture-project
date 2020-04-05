@@ -1,12 +1,21 @@
 import sys
 
-file_name = ''
-cache_size = 0
-block_size = 0
-associativity = 0
-replacement = ''
+def print_input():
+    print('Cache Simulator CS 3853 Spring 2020 - Group #01\n\n')
+    print('Trace File: %s\n\n' % (file_name))
+    print('***** Cache Input Parameters *****\n\n')
+    print('%-25s %s KB' % ('Cache Size:', cache_size))
+    print('%-25s %s bytes' % ('Block Size:', block_size))
+    print('%-25s %s' % ('Associativity:', associativity))
+    print('%-25s %s' % ('Replacement Polity:', replacement))
 
 def set_vars():
+    global file_name
+    global cache_size
+    global block_size
+    global associativity
+    global replacement
+
     for i in range(1, len(sys.argv), 2):
         if sys.argv[i] == '-f':
             file_name = sys.argv[i+1]
@@ -23,6 +32,7 @@ def set_vars():
 
 def main():
     set_vars()
+    print_input()
 
 if __name__ == '__main__':
     main()
