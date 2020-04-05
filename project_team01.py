@@ -1,13 +1,23 @@
 import sys
 
-def print_input():
-    print('Cache Simulator CS 3853 Spring 2020 - Group #01\n\n')
-    print('Trace File: %s\n\n' % (file_name))
-    print('***** Cache Input Parameters *****\n\n')
-    print('%-25s %s KB' % ('Cache Size:', cache_size))
-    print('%-25s %s bytes' % ('Block Size:', block_size))
-    print('%-25s %s' % ('Associativity:', associativity))
-    print('%-25s %s' % ('Replacement Polity:', replacement))
+def print_args():
+    print('Cache Simulator CS 3853 Spring 2020 - Group #01')
+    print('\nTrace File: %s' % (file_name))
+    print('\n***** Cache Input Parameters *****')
+    print('\n%-30s %d KB' % ('Cache Size:', cache_size))
+    print('%-30s %d bytes' % ('Block Size:', block_size))
+    print('%-30s %d' % ('Associativity:', associativity))
+    print('%-30s %s' % ('Replacement Polity:', replacement))
+
+def print_calculated_values():
+    print('\n***** Cache Calculated Values *****')
+    print('%-30s %d' % ('Total # Blocks:', (cache_size / block_size)))
+    print('%-30s %d bits' % ('Tag Size:', -1))
+    print('%-30s %d bits' % ('Index Size:', -1))
+    print('%-30s %d' % ('Total # Rows:', -1))
+    print('%-30s %d bytes'% ('Overhead Size:', -1))
+    print('%-30s %0.2f KB (%d bytes)' % ('Implementation Memory Size:', -1.0, -1))
+    print('%-30s $%0.2f' % ('Cost:', -1.0))
 
 def set_vars():
     global file_name
@@ -32,7 +42,8 @@ def set_vars():
 
 def main():
     set_vars()
-    print_input()
+    print_args()
+    print_calculated_values()
 
 if __name__ == '__main__':
     main()
