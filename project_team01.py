@@ -77,12 +77,30 @@ def set_vars():
             print('invalid command ', sys.argv[i])
             sys.exit(-1)
 
+def print_addr():
+    i = 0
+    limit = 0
+
+    with open(file_name) as current:
+        print("\n***** Trace File Addresses and Instruction Length *****")
+        print()
+
+        for line in current:
+            if i % 3 == 0:
+                tokens = line.split(" ")
+                print("0x" + tokens[2] + ":", tokens[1].strip(":"))
+                limit += 1
+            i += 1
+
+            if limit >= 20:
+                break
 
 def main():
     set_vars()
     print_args()
     calculate_values()
     print_calculated_values()
+    print_addr()
 
 
 if __name__ == '__main__':
