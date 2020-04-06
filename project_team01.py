@@ -27,7 +27,7 @@ def print_args():
 
 def print_calculated_values():
     print('\n***** Cache Calculated Values *****')
-    print('%-30s %d' % ('Total # Blocks:', total_blocks))
+    print('\n%-30s %d' % ('Total # Blocks:', total_blocks))
     print('%-30s %d bits' % ('Tag Size:', tag_size))
     print('%-30s %d bits' % ('Index Size:', index_size))
     print('%-30s %d' % ('Total # Rows:', total_rows))
