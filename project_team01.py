@@ -31,9 +31,11 @@ def print_calculated_values():
     print('%-30s %d bits' % ('Tag Size:', tag_size))
     print('%-30s %d bits' % ('Index Size:', index_size))
     print('%-30s %d' % ('Total # Rows:', total_rows))
-    #print('%-30s %d bytes' % ('Overhead Size:', overhead_size))
-    #print('%-30s %0.2f KB (%d bytes)' % ('Implementation Memory Size:', -1.0, -1))
-    #print('%-30s $%0.2f' % ('Cost:', cost))
+    print('%-30s %d bytes' % ('Overhead Size:', overhead_size))
+    print('%-30s %0.2f KB (%d bytes)' % ('Implementation Memory Size:'
+                                         , implementation_mem_size / 1024
+                                         , implementation_mem_size))
+    print('%-30s $%0.2f' % ('Cost:', cost))
 
 
 def calculate_values():
@@ -41,17 +43,17 @@ def calculate_values():
     global tag_size
     global index_size
     global total_rows
-    #global overhead_size
-    #global implementation_mem_size
-    #global cost
+    global overhead_size
+    global implementation_mem_size
+    global cost
 
     total_blocks = (cache_size * 1024) / block_size
     total_rows = (cache_size * 1024) / (block_size * associativity)
     index_size = math.log(total_rows, 2)
     tag_size = 32 - math.log(block_size, 2) - index_size
-    #overhead_size =
-    #implementation_mem_size =
-    #cost =
+    overhead_size = ((tag_size + 1) * total_blocks) // 8
+    implementation_mem_size = (overhead_size + cache_size*1024)
+    cost = (implementation_mem_size // 1024) * 0.05
 
 def set_vars():
     global file_name
