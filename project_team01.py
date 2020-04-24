@@ -1,6 +1,22 @@
 import sys
 import math
 
+class Block:
+    def __init__(self, block_size, tag_size):
+        self.data = [0 for x in range(block_size)]
+        self.valid = True
+        self.tag = [tag_size]
+        self.tag_size = tag_size
+
+    def is_valid(self):
+        return self.valid
+
+    def set_valid(self, is_valid):
+        self.valid = is_valid
+
+    def set_tag(self, new_tag):
+        for i in range(tag):
+            tag[i] = 1 & (newtag >> tag_size-i)
 
 def print_args():
     RR = 'Round Robin'
@@ -55,6 +71,10 @@ def calculate_values():
     implementation_mem_size = (overhead_size + cache_size*1024)
     cost = (implementation_mem_size // 1024) * 0.05
 
+def set_cache():
+    global cache
+    cache = [[Block(block_size, tag_size) for x in range(total_rows)] for y in range(associativity)]
+
 def set_vars():
     global file_name
     global cache_size
@@ -101,6 +121,7 @@ def main():
     calculate_values()
     print_calculated_values()
     print_addr()
+    set_cache()
 
 
 if __name__ == '__main__':
