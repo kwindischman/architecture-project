@@ -1,5 +1,6 @@
 import sys
 import math
+from .file import Block
 
 
 def print_args():
@@ -54,6 +55,9 @@ def calculate_values():
     overhead_size = ((tag_size + 1) * total_blocks) // 8
     implementation_mem_size = (overhead_size + cache_size*1024)
     cost = (implementation_mem_size // 1024) * 0.05
+
+def set_cache():
+    global cache = [[Block(block_size, tag_size) for x in range(total_rows)] for y in range(associativity)]
 
 def set_vars():
     global file_name
