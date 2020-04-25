@@ -18,6 +18,42 @@ class Block:
         for i in range(tag):
             tag[i] = 1 & (newtag >> tag_size-i)
 
+def calculate_values():
+    global total_blocks
+    global tag_size
+    global index_size
+    global total_rows
+    global overhead_size
+    global implementation_mem_size
+    global cost
+
+    total_blocks = (cache_size * 1024) / block_size
+    total_rows = (cache_size * 1024) / (block_size * associativity)
+    index_size = math.log(total_rows, 2)
+    tag_size = 32 - math.log(block_size, 2) - index_size
+    overhead_size = ((tag_size + 1) * total_blocks) // 8
+    implementation_mem_size = (overhead_size + cache_size*1024)
+    cost = (implementation_mem_size // 1024) * 0.05
+
+def parse_trace_file():
+    i = 0
+    instr_length = ""
+    instr_addr = ""
+    dest_addr = ""
+    src_addr = ""
+
+    with open(file_name) as file:
+        for line in file:
+            if i % 3 == 0:
+                instr_length = line[5:7]
+                instr_addr = line[10:18]
+            elif i % 3 == 1:
+                dest_addr = line[6:14]
+                src_addr = line[33:41]
+            #elif i % 3 == 2:
+            #call function that processes data
+            i+=1
+
 def print_args():
     RR = 'Round Robin'
     RND = 'Random'
@@ -40,7 +76,6 @@ def print_args():
         print('bad input for replacement policy')
         sys.exit(-1)
 
-
 def print_calculated_values():
     print('\n***** Cache Calculated Values *****')
     print('\n%-30s %d' % ('Total # Blocks:', total_blocks))
@@ -52,24 +87,6 @@ def print_calculated_values():
                                          , implementation_mem_size / 1024
                                          , implementation_mem_size))
     print('%-30s $%0.2f' % ('Cost:', cost))
-
-
-def calculate_values():
-    global total_blocks
-    global tag_size
-    global index_size
-    global total_rows
-    global overhead_size
-    global implementation_mem_size
-    global cost
-
-    total_blocks = (cache_size * 1024) / block_size
-    total_rows = (cache_size * 1024) / (block_size * associativity)
-    index_size = math.log(total_rows, 2)
-    tag_size = 32 - math.log(block_size, 2) - index_size
-    overhead_size = ((tag_size + 1) * total_blocks) // 8
-    implementation_mem_size = (overhead_size + cache_size*1024)
-    cost = (implementation_mem_size // 1024) * 0.05
 
 def set_cache():
     global cache
@@ -97,31 +114,13 @@ def set_vars():
             print('invalid command ', sys.argv[i])
             sys.exit(-1)
 
-def print_addr():
-    i = 0
-    limit = 0
-
-    with open(file_name) as current:
-        print("\n***** Trace File Addresses and Instruction Length *****")
-        print()
-
-        for line in current:
-            if i % 3 == 0:
-                tokens = line.split(" ")
-                print("0x" + tokens[2] + ":", tokens[1].strip(":"))
-                limit += 1
-            i += 1
-
-            if limit >= 20:
-                break
-
 def main():
     set_vars()
     print_args()
     calculate_values()
     print_calculated_values()
-    print_addr()
     set_cache()
+    parse_trace_file()
 
 
 if __name__ == '__main__':
