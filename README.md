@@ -13,3 +13,7 @@ M#1 due Apr 6: Input Parameters and Calculated Values
 M#2 due Apr 27: Simulation Results
 
 M#3 due May 7: Analysis
+
+RUN CODE:
+
+project_team01.py -f Trace1.trc -s 1024 -b 16 -a 2 -r RR
