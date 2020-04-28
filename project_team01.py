@@ -29,8 +29,8 @@ def calculate_values():
     global implementation_mem_size
     global cost
 
-    total_blocks = (cache_size * 1024) // block_size
-    total_rows = (cache_size * 1024) // (block_size * associativity)
+    total_blocks = (cache_size * 1024) / block_size
+    total_rows = (cache_size * 1024) / (block_size * associativity)
     index_size = math.log(total_rows, 2)
     block_offset = math.log(block_size, 2)
     tag_size = 32 - block_offset - index_size
@@ -114,8 +114,14 @@ def reg_instr(len, addr):
 
     for i in range(0, extra_blocks + 1):
         total_accesses += 1
+        new_index = 0
 
-        block_found = check_row(index + i, tag)
+        if index != 0:
+            new_index = (index + i) % index
+        else:
+            new_index = index + i
+
+        block_found = check_row(new_index, tag)
 
         if block_found == -1:
             total_cycles += 1
@@ -123,9 +129,9 @@ def reg_instr(len, addr):
         else:
             total_cycles += (block_size / 4)
             if block_found == -2:
-                replacement_method(index + i, tag)
+                replacement_method(new_index, tag)
             else:
-                compulsory_miss(index + i, block_found, tag)
+                compulsory_miss(new_index, block_found, tag)
 
 
 def check_row(index, tag):
@@ -196,12 +202,13 @@ def print_simulation_results():
     print("%-30s %0.4f%%" % ('Miss Rate:', (100-(total_hits*100/float(total_accesses)))))
     print("%-30s %0.2f Cycles/Instruction" % ('CPI', total_cycles/float(total_accesses)))
 
-    unused_cache = 5
+    unused_cache = ((total_blocks - comp_misses) * (((block_size*8) + tag_size + 1) / 8.0 )) / 1024
+    total_cache_size = (total_blocks * ((block_size * 8) + tag_size + 1) / 8.0 ) / 1024
 
     print("\n%-30s %0.2f KB / %0.2f KB = %0.2f%% Waste: $%0.2f" % ('Unused Cache Space:'
                                                                   , unused_cache
-                                                                  , (cache_size + overhead_size)
-                                                                  , (unused_cache/(cache_size + overhead_size)) * 100
+                                                                  , total_cache_size
+                                                                  , (unused_cache/total_cache_size) * 100
                                                                   , 0.05 * unused_cache))
     print("%-30s %d / %d" % ('Unused Cache Blocks:', total_blocks - comp_misses, total_blocks))
 
@@ -222,7 +229,7 @@ def set_cache():
 
     total_accesses = 0
     total_hits = 0
-    total_cycles = 20
+    total_cycles = 0
     total_instructions = 0
     conf_misses = 0
     comp_misses = 0
