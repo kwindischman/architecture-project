@@ -87,9 +87,8 @@ def compulsory_miss(index, col, tag):
     global comp_misses
     comp_misses += 1
 
-    block = cache[index][col]
-    block.set_valid(True)
-    block.set_tag(tag)
+    cache[index][col].valid = True
+    cache[index][col].tag = tag
 
 def reg_instr(len, addr):
     global total_accesses
@@ -116,7 +115,7 @@ def reg_instr(len, addr):
         total_accesses += 1
         new_index = 0
 
-        if index != 0:
+        if index + i > total_rows - 1:
             new_index = (index + i) % index
         else:
             new_index = index + i
