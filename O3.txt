@@ -1,43 +1,37 @@
 Cache Simulator - CS 3853 - Team 01
 
-Trace File: Trace1.trc
+Trace File: A-9_new_1.5.pdf.trc
 
 ***** Cache Input Parameters *****
 
-Cache Size:                    128 KB
-Block Size:                    32 bytes
-Associativity:                 4
-Replacement Policy:            Least Recently Used
+Cache Size:                    256 KB
+Block Size:                    8 bytes
+Associativity:                 2
+Replacement Policy:            Round Robin
 
 ***** Cache Calculated Values *****
 
-Total # Blocks:                4096
-Tag Size:                      17 bits
-Index Size:                    10 bits
-Total # Rows:                  1024
-Overhead Size:                 9216 bytes
-Implementation Memory Size:    137.00 KB (140288 bytes)
-Cost:                          $6.85
+Total # Blocks:                32768
+Tag Size:                      15 bits
+Index Size:                    14 bits
+Total # Rows:                  16384
+Overhead Size:                 65536 bytes
+Implementation Memory Size:    320.00 KB (327680 bytes)
+Cost:                          $16.00
 
-***** Trace File Addresses and Instruction Length *****
+***** Cache Simulation Results *****
 
-0x7c81eb33: (01)
-0x7c81eb34: (01)
-0x7c81eb35: (03)
-0x78158e69: (01)
-0x78158e6a: (03)
-0x01763891: (01)
-0x01763892: (01)
-0x01763893: (01)
-0x01763894: (01)
-0x01763895: (01)
-0x01763896: (01)
-0x01763897: (01)
-0x01763898: (01)
-0x01763899: (01)
-0x0176389a: (01)
-0x0176389b: (01)
-0x0176389c: (01)
-0x0176389d: (01)
-0x0176389e: (01)
-0x0176389f: (01)
+Total Cache Accesses:          490068
+Cache Hits:                    466265
+Cache Misses:                  23803
+--- Compulsory Misses:             18834
+--- Conflict Misses:               4969
+
+***** ***** CACHE HIT & MISS RATE: ***** *****
+
+Hit Rate:                      95.1429%
+Miss Rate:                     4.8571%
+CPI                            2.29 Cycles/Instruction
+
+Unused Cache Space:            136.07 KB / 320.00 KB = 42.52% Waste: $6.80
+Unused Cache Blocks:           13934 / 32768

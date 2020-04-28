@@ -1,43 +1,37 @@
 Cache Simulator - CS 3853 - Team 01
 
-Trace File: Trace1.trc
+Trace File: A-9_new_1.5.pdf.trc
 
 ***** Cache Input Parameters *****
 
-Cache Size:                    512 KB
-Block Size:                    4 bytes
-Associativity:                 8
+Cache Size:                    1024 KB
+Block Size:                    32 bytes
+Associativity:                 4
 Replacement Policy:            Random
 
 ***** Cache Calculated Values *****
 
-Total # Blocks:                131072
-Tag Size:                      16 bits
-Index Size:                    14 bits
-Total # Rows:                  16384
-Overhead Size:                 278528 bytes
-Implementation Memory Size:    784.00 KB (802816 bytes)
-Cost:                          $39.20
+Total # Blocks:                32768
+Tag Size:                      14 bits
+Index Size:                    13 bits
+Total # Rows:                  8192
+Overhead Size:                 61440 bytes
+Implementation Memory Size:    1084.00 KB (1110016 bytes)
+Cost:                          $54.20
 
-***** Trace File Addresses and Instruction Length *****
+***** Cache Simulation Results *****
 
-0x7c81eb33: (01)
-0x7c81eb34: (01)
-0x7c81eb35: (03)
-0x78158e69: (01)
-0x78158e6a: (03)
-0x01763891: (01)
-0x01763892: (01)
-0x01763893: (01)
-0x01763894: (01)
-0x01763895: (01)
-0x01763896: (01)
-0x01763897: (01)
-0x01763898: (01)
-0x01763899: (01)
-0x0176389a: (01)
-0x0176389b: (01)
-0x0176389c: (01)
-0x0176389d: (01)
-0x0176389e: (01)
-0x0176389f: (01)
+Total Cache Accesses:          396434
+Cache Hits:                    388258
+Cache Misses:                  8176
+--- Compulsory Misses:             8103
+--- Conflict Misses:               73
+
+***** ***** CACHE HIT & MISS RATE: ***** *****
+
+Hit Rate:                      97.9376%
+Miss Rate:                     2.0624%
+CPI                            2.69 Cycles/Instruction
+
+Unused Cache Space:            815.94 KB / 1084.00 KB = 75.27% Waste: $40.80
+Unused Cache Blocks:           24665 / 32768
